@@ -1,0 +1,4 @@
+Casos de teste referentes a Users
+ Os casos de teste foram feitos no modelo gerkin 
+
+1-Criar usuário com sucesso
