@@ -8,7 +8,7 @@ criar sessão
     ${headers}=    Create Dictionary     Accept=application/json    Content-Type=application/json    
     Create Session    alias=Suits    url=${URL_SUITS}    headers=${headers}
 
-logar admin
+logar auth
     [Arguments]    ${email}    ${senha}
     ${body}=    Create Dictionary    mail=${email}    password=${senha}
     Log    ${body}
@@ -18,21 +18,24 @@ logar admin
     Log    ${TOKEN}
 
 criar um usuario
-    
     #gerar massas
     ${FULL_NAME}    gerar_nome_aleatorio
-    ${USER_EMAIL}    gerar_email_aleatorio
-    ${USER_PASSWORD}    gerar_password_aleatorio
+    ${user_email}    gerar_email_aleatorio
+    ${user_password}    gerar_password_aleatorio
     ${CPF}    gerar_cpf_aleatorio
+    Set Test Variable    ${USER_EMAIL}    ${user_email}
+    Set Test Variable    ${USER_PASSWORD}    ${user_password}
+    Log    ${user_email}
+    Log    ${user_password}
 
     ${headers}=    Create Dictionary    accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
     ${body}=    Create Dictionary
     ...    fullName=${FULL_NAME}
-    ...    mail=${USER_EMAIL}
-    ...    password=${USER_PASSWORD}
+    ...    mail=${user_email}
+    ...    password=${user_password}
     ...    accessProfile=${ACESS_PROFILE}
     ...    cpf=${CPF}
-    ...    confirmPassword=${USER_PASSWORD}    
+    ...    confirmPassword=${user_password}    
 
     Log Dictionary    ${body}  
     
