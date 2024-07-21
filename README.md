@@ -5,30 +5,27 @@ ainda estou na estapa de desenvolvimento então a estrutura do projeto está mud
 Estrutura em pastas
  
 
+# Projeto de Testes Automatizados
+
+## Estrutura de Pastas
+
+```plaintext
 ├── logs
 ├── resources
 │   ├── keywords
-│   │   ├── keywords_gerais.robot (geração de massa)
-│   │   │      
-│   │   |── keywords_tests.robot (utilizadas nos testes)
-│   │   | 
-│   │   └── keywords_ultis.robot (pré requisitos)
-│   │
+│   │   ├── keywords_gerais.robot          # Geração de massa
+│   │   ├── keywords_tests.robot           # Utilizadas nos testes
+│   │   └── keywords_utils.robot           # Pré-requisitos
 │   ├── variables
-│       ├── variables_globals.robot
-│    
-|── main.robot 
-|
+│       └── variables_globals.robot
+├── main.robot
 ├── tests
-|    ├── uers_tests
-|         ├── DELETE_user.robot (geração de massa)
-│         │      
-│         |── GET_user.robot (utilizadas nos testes)
-│         | 
-│         └── POST_user.robot (pré requisitos)
-|         | 
-│         └── PUT_user.robot (pré requisitos)
-|        
-├── readme.md
+│   ├── users_tests
+│       ├── DELETE_user.robot              # Geração de massa
+│       ├── GET_user.robot                 # Utilizadas nos testes
+│       ├── POST_user.robot                # Pré-requisitos
+│       └── PUT_user.robot                 # Pré-requisitos
+└── readme.md
+
 
 
