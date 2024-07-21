@@ -1,4 +1,16 @@
 Casos de teste referentes a Users
- Os casos de teste foram feitos no modelo gerkin 
+
+ Os casos de teste foram feitos utilizando Gherkin 
+Cenário (Scenario): Representa um caso de teste.
+Dado (Given): Define o contexto inicial do cenário.
+Quando (When): Descreve a ação ou evento.
+Então (Then): Define o resultado esperado.
+E (And): Pode ser usado para adicionar mais passos ao Given, When ou Then.
+Mas (But): Similar ao And, usado para adicionar condições negativas ou alternativas.
+
 
 1-Criar usuário com sucesso
+    para criar um novo usuario
+    enviar os dados nescessarios de acordo com as regras de negocio
+    
+    

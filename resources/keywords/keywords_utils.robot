@@ -1,35 +1,57 @@
 *** Settings ***
-Documentation    contém as keywords de geração de massa 
+Documentation    contém as keywords que são pré requisitos para os testes 
 Resource    ../main.robot
+Library    OperatingSystem
 
 *** Keywords ***
-gerar_nome_aleatorio
-    ${nome} =     Generate Random String    10    [LETTERS]
-    ${sobrenome} =    Generate Random String    10    [LETTERS]
-    ${nome_composto} =    Catenate    ${nome}    ${sobrenome}
-    ${nome_personalizado} =    Evaluate    "${nome_composto}".title()
-    RETURN   ${nome_personalizado}
 
-gerar_email_aleatorio
-    ${nome} =     Generate Random String    10    [LOWER]
-    ${dominio} =    Set Variable    @example.com
-    ${email_personalizado} =    Catenate    ${nome}${dominio}
-    RETURN    ${email_personalizado}
+suite setup criar sessao logar admin
+    criar sessão
+    logar adimin   
 
-gerar_cpf_aleatorio
-    ${cpf} =     Generate Random String    11    [NUMBERS]
-    RETURN    ${cpf}
+suite setup pre requisito usuario ter feito login no sistema
+    criar sessão
+    logar adimin
+    criar um usuario com sucesso
+    logar auth    ${USER_EMAIL}    ${USER_PASSWORD} 
 
-gerar_password_aleatorio
-    #Senha precisa ter: uma letra maiúscula, uma letra minúscula, um número, um caractere especial(@#$%) e tamanho entre 8-12.
-    ${password_numero} =     Generate Random String    3    [NUMBERS]
-    ${password_letras}=    Generate Random String    5    [LETTERS]
-    ${password_letras1}=    Generate Random String    5    [UPPER]
-    ${caracteres_especiais} =     Generate Random String    1    @#$%
-    ${password}=    Catenate    ${password_numero}${caracteres_especiais}${password_letras}
-    RETURN    ${password}
+suite teardown deletar usuario
+    deletar usuario
 
-gerar_nome_aleatorio_diretoria
-    ${nome} =     Generate Random String    5    [LOWER]
-    ${nome_personalizado} =    Evaluate    "${nome}".title()
-    RETURN    ${nome_personalizado}
+logar adimin
+    ${body}=    Create Dictionary    mail=${EMAIL_ADMIN}    password=${PASSWORD_ADMIN}
+    Log    ${body}
+    ${resposta}=    POST On Session    alias=Suits    url=/api/${login_auth}    json=${body}    expected_status=200
+    Log    ${resposta.json()}  
+    Set Global Variable    ${TOKEN}    ${resposta.json()['token']}            
+    Log    ${TOKEN}
+  
+criar um usuario com sucesso
+    #gerar massas
+    ${FULL_NAME}    gerar_nome_aleatorio
+    ${user_email}    gerar_email_aleatorio
+    ${user_password}    gerar_password_aleatorio
+    ${CPF}    gerar_cpf_aleatorio
+
+    Set Global Variable   ${USER_EMAIL}    ${user_email}
+    Set Global Variable    ${USER_PASSWORD}    ${user_password}
+    Log    ${user_email}
+    Log    ${user_password}
+
+    ${headers}=    Create Dictionary    accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
+    ${body}=    Create Dictionary
+    ...    fullName=${FULL_NAME}
+    ...    mail=${user_email}
+    ...    password=${user_password}
+    ...    accessProfile=${ACESS_PROFILE}
+    ...    cpf=${CPF}
+    ...    confirmPassword=${user_password}    
+
+    Log Dictionary    ${body}  
+    
+    ${resposta}=    POST On Session    alias=Suits    url=/api/user    headers=${headers}    json=${body}    expected_status=201   
+    Log    ${resposta.json()}
+
+    Set Global Variable   ${USER_ID}    ${resposta.json()["user"]["_id"]}   
+    Log    ${USER_ID} 
+

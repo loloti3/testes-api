@@ -14,38 +14,56 @@ logar auth
     Log    ${body}
     ${resposta}=    POST On Session    alias=Suits    url=/api/${login_auth}    json=${body}    expected_status=200
     Log    ${resposta.json()}  
-    Set Test Variable    ${TOKEN}    ${resposta.json()['token']}            
+    Set Variable   ${TOKEN}    ${resposta.json()['token']}            
     Log    ${TOKEN}
-
-criar um usuario
-    #gerar massas
-    ${FULL_NAME}    gerar_nome_aleatorio
-    ${user_email}    gerar_email_aleatorio
-    ${user_password}    gerar_password_aleatorio
-    ${CPF}    gerar_cpf_aleatorio
-    Set Test Variable    ${USER_EMAIL}    ${user_email}
-    Set Test Variable    ${USER_PASSWORD}    ${user_password}
-    Log    ${user_email}
-    Log    ${user_password}
-
-    ${headers}=    Create Dictionary    accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
-    ${body}=    Create Dictionary
-    ...    fullName=${FULL_NAME}
-    ...    mail=${user_email}
-    ...    password=${user_password}
-    ...    accessProfile=${ACESS_PROFILE}
-    ...    cpf=${CPF}
-    ...    confirmPassword=${user_password}    
-
-    Log Dictionary    ${body}  
-    
-    ${resposta}=    POST On Session    alias=Suits    url=/api/user    headers=${headers}    json=${body}    expected_status=201   
-    Log    ${resposta.json()}
-
-    Set Test Variable    ${USER_ID}    ${resposta.json()["user"]["_id"]}   
-    Log    ${USER_ID}  
 
 listar usuario
     ${headers}=    Create Dictionary    accept=application/json    Content-Type=application/json    Authorization=${TOKEN} 
     ${resposta}=    GET On Session    alias=Suits    url=/api/user    headers=${headers}    expected_status=200
     Log    ${resposta.json()}
+
+contagem de usuarios
+   ${headers}=    Create Dictionary    Accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
+   ${resposta}=    GET On Session    alias=Suits    url=/api/user/count    headers=${headers}    expected_status=200
+   Log    ${resposta.json()}
+   Set test Variable   ${count}    ${resposta.json()["count"]}
+   Log    ${count}
+   RETURN    ${count}
+
+listar usuario por id
+    ${headers}=    Create Dictionary    Accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
+    ${resposta}=    GET On Session    alias=Suits    url=/api/user/${USER_ID}    headers=${headers}    expected_status=200
+    Log    ${resposta.json()}
+    Set Variable   ${user_id}    ${resposta.json()["_id"]}
+    Log    ${user_id}
+    Log    ${USER_ID}
+    Should Be Equal    ${user_id}    ${USER_ID}
+
+atualizar dados usuario por id
+
+    ${nome}=    FakerLibrary.Name
+    ${email}=    FakerLibrary.Email
+
+    ${headers}=    Create Dictionary    Accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
+    ${body}=    Create Dictionary    
+    ...  fullName=${nome}
+    ...  mail=${email}
+    ${resposta}=    PUT On Session    alias=Suits    url=/api/user/${USER_ID}    json=${body}    headers=${headers}    expected_status=200
+    Log     ${resposta.json()}
+    Set test Variable   ${nome_agora}    ${resposta.json()["updatedUser"]["fullName"]}
+    Set test Variable   ${email_agora}    ${resposta.json()["updatedUser"]["mail"]}
+    Log    ${nome_agora}
+    Log    ${email_agora}
+    Should Be Equal    ${nome}    ${nome_agora}
+    Should Be Equal    ${email}    ${email_agora}
+
+deletar usuario
+    ${headers}=    Create Dictionary    Accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
+    ${resposta}=    DELETE On Session    alias=Suits    url=/api/user/${USER_ID}       headers=${headers}    expected_status=200
+    Log    ${resposta.json()}
+    Should Be Equal    ${resposta.json()["msg"]}    ${MENSAGEM_USUARIO_DELETADO}
+
+
+
+
+
