@@ -16,6 +16,7 @@ suite setup pre requisito usuario ter feito login no sistema
     logar auth    ${USER_EMAIL}    ${USER_PASSWORD} 
 
 suite teardown deletar usuario
+    logar adimin
     deletar usuario
 
 logar adimin
