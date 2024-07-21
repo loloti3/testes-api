@@ -4,10 +4,6 @@ Resource    ../main.robot
 
 *** Keywords ***
 
-criar sessão 
-    ${headers}=    Create Dictionary     Accept=application/json    Content-Type=application/json    
-    Create Session    alias=Suits    url=${URL_SUITS}    headers=${headers}
-
 logar auth
     [Arguments]    ${email}    ${senha}
     ${body}=    Create Dictionary    mail=${email}    password=${senha}
@@ -59,11 +55,15 @@ atualizar dados usuario por id
 
 deletar usuario
     ${headers}=    Create Dictionary    Accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
-    ${resposta}=    DELETE On Session    alias=Suits    url=/api/user/${USER_ID}       headers=${headers}    expected_status=200
+    ${resposta}=    DELETE On Session    alias=Suits    url=/api/user/${USER_ID}       headers=${headers}    expected_status=200 
     Log    ${resposta.json()}
-    Should Be Equal    ${resposta.json()["msg"]}    ${MENSAGEM_USUARIO_DELETADO}
+    Should Be Equal    ${resposta.json()["msg"]}    ${MENSAGEM_USUARIO_DELETADO_SUCESSO}    
 
-
+deletar usuario com id invalido
+    ${headers}=    Create Dictionary    Accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
+    ${resposta}=    DELETE On Session    alias=Suits    url=/api/user/${USER_ID}       headers=${headers}    expected_status=400
+    Log    ${resposta.json()}    
+    Should Be Equal    ${resposta.json()["alert"][0]}     ${MENSAGEM_USUARIO_NAO_EXISTE}   
 
 
 

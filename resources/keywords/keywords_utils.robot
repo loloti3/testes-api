@@ -25,7 +25,11 @@ logar adimin
     Log    ${resposta.json()}  
     Set Global Variable    ${TOKEN}    ${resposta.json()['token']}            
     Log    ${TOKEN}
-  
+
+criar sessão 
+    ${headers}=    Create Dictionary     Accept=application/json    Content-Type=application/json    
+    Create Session    alias=Suits    url=${URL_SUITS}    headers=${headers}
+
 criar um usuario com sucesso
     #gerar massas
     ${FULL_NAME}    gerar_nome_aleatorio

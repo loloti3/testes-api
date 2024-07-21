@@ -13,4 +13,3 @@ Resource    ./keywords/keywords_utils.robot
 Resource    ./keywords/keywords_testes.robot
 Resource    ./variables/variables_globals.robot
 Resource    ./keywords/keywords_gerar_massa.robot
-Resource    ./keywords_pages/delete_user_key.robot

@@ -11,9 +11,9 @@ ${PASSWORD_ADMIN}    1234@Test
 ${TOKEN}    EMPTY
 
 #Mensagems 
+${MENSAGEM_USUARIO_DELETADO_SUCESSO}    Usuário deletado com sucesso!. 
+${MENSAGEM_USUARIO_NAO_EXISTE}    Esse usuário não existe em nossa base de dados.  
 
-${MENSAGEM_USUARIO_DELETADO}    Usuário deletado com sucesso!. 
-${MENSAGEM_USUARIO_NAO_EXISTE}    Esse usuário não existe em nossa base de dados.   
 #rotas 
 ${login_auth}    login
 
@@ -28,4 +28,8 @@ ${USER_ID}    EMPTY
 #GET count
 ${COUNT_ANTES}    EMPTY
 ${COUNT_DEPOIS}    EMPTY
+
+#status code
+${STATUS_200}    200
+${STATUS_400}    400
 

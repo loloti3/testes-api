@@ -7,10 +7,10 @@ Documentation    Casos de teste de deletar usuário
 *** Test Cases ***
 DELETE deletar usuario com sucesso
     logar adimin
-    deletar usuario
+    deletar usuario    
 
 DELETE deletar usuario com id invalido
     [Tags]    T1
     logar adimin
-    deletar usuario
+    deletar usuario    
     deletar usuario com id invalido
