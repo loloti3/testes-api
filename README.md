@@ -21,10 +21,10 @@ Estrutura em pastas
 ├── main.robot
 ├── tests
 │   ├── users_tests
-│       ├── DELETE_user.robot              # Geração de massa
-│       ├── GET_user.robot                 # Utilizadas nos testes
-│       ├── POST_user.robot                # Pré-requisitos
-│       └── PUT_user.robot                 # Pré-requisitos
+│       ├── DELETE_user.robot              
+│       ├── GET_user.robot                 
+│       ├── POST_user.robot                
+│       └── PUT_user.robot                 
 └── readme.md
 
 
