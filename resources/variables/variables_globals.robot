@@ -10,8 +10,10 @@ ${EMAIL_ADMIN}    sysadmin@qacoders.com
 ${PASSWORD_ADMIN}    1234@Test
 ${TOKEN}    EMPTY
 
+#Mensagems 
+
 ${MENSAGEM_USUARIO_DELETADO}    Usuário deletado com sucesso!. 
-${mensagem_usuario_nao_existe}    Esse usuário não existe em nossa base de dados.   
+${MENSAGEM_USUARIO_NAO_EXISTE}    Esse usuário não existe em nossa base de dados.   
 #rotas 
 ${login_auth}    login
 
