@@ -4,22 +4,31 @@ ainda estou na estapa de desenvolvimento então a estrutura do projeto está mud
 
 Estrutura em pastas
  
- docs -- contém os casos de teste documentados 
 
- resources -- contém tudo que é nescessário para realizar os testes 
-    |    |
-    |    |
-    |    --keywords --contém as keywords genéricas para relizar os testes (geração de massa, teste setup e as sessões de cada rota)
-    |    |
-    |    |
-    |    --keywords_pages --contém as keywords especificas de cada caso de teste (planejo retirar esta pasta para deixar o arquivo menor) 
-    |    |
-    |    |
-    |    --variables -- contém as as varivéis blobais dos testes
-    |
-    --main -- contém os arquivos e blibliotecas nescessários para realizar os testes
-
- testes -- contém todos os casos de teste separados por rota
-
+├── logs
+├── resources
+│   ├── keywords
+│   │   ├── keywords_gerais.robot (geração de massa)
+│   │   │      
+│   │   |── keywords_tests.robot (utilizadas nos testes)
+│   │   | 
+│   │   └── keywords_ultis.robot (pré requisitos)
+│   │
+│   ├── variables
+│       ├── variables_globals.robot
+│    
+|── main.robot 
+|
+├── tests
+|    ├── uers_tests
+|         ├── DELETE_user.robot (geração de massa)
+│         │      
+│         |── GET_user.robot (utilizadas nos testes)
+│         | 
+│         └── POST_user.robot (pré requisitos)
+|         | 
+│         └── PUT_user.robot (pré requisitos)
+|        
+├── readme.md
 
 
