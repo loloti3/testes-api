@@ -3,14 +3,13 @@
 Resource    ../main.robot
 
 *** Variables ***
-${EMPTY}    EMPTY
-
+${EMPTY}    
 ${URL_SUITS}    https://suits.qacoders-academy.com.br
 ${EMAIL_ADMIN}    sysadmin@qacoders.com    
 ${PASSWORD_ADMIN}    1234@Test
 ${TOKEN}    EMPTY
 
-#Mensagems 
+#Mensagens 
 ${MENSAGEM_USUARIO_DELETADO_SUCESSO}    Usuário deletado com sucesso!. 
 ${MENSAGEM_USUARIO_NAO_EXISTE}    Esse usuário não existe em nossa base de dados.  
 ${MENSAGEM_CAMPO_EMAIL_OBRIGATORIO}    O campo e-mail é obrigatório.
