@@ -13,6 +13,8 @@ ${TOKEN}    EMPTY
 #Mensagems 
 ${MENSAGEM_USUARIO_DELETADO_SUCESSO}    Usuário deletado com sucesso!. 
 ${MENSAGEM_USUARIO_NAO_EXISTE}    Esse usuário não existe em nossa base de dados.  
+${MENSAGEM_CAMPO_EMAIL_OBRIGATORIO}    O campo e-mail é obrigatório.
+${MENSAGEM_CAMPO_NOME_OBRIGATORIO}    O campo nome completo é obrigatório.
 
 #rotas 
 ${login_auth}    login

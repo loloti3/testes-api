@@ -23,6 +23,7 @@ contagem de usuarios
    ${resposta}=    GET On Session    alias=Suits    url=/api/user/count    headers=${headers}    expected_status=200
    Log    ${resposta.json()}
    Set test Variable   ${count}    ${resposta.json()["count"]}
+   To Json    content
    Log    ${count}
    RETURN    ${count}
 
@@ -60,7 +61,19 @@ atualizar dados usuario por id
     Should Be Equal    ${nome}    ${nome_agora}
     Should Be Equal    ${email}    ${email_agora}
 
-deletar usuario
+atualizar dados usuario com campos em branco
+    [Arguments]    ${email}    ${nome}    ${mensagem}
+    ${headers}=    Create Dictionary    Accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
+    ${body}=    Create Dictionary    
+    ...  fullName=${nome}
+    ...  mail=${email}
+    ${resposta}=    PUT On Session    alias=Suits    url=/api/user/${USER_ID}    json=${body}    headers=${headers}    expected_status=400
+    Log     ${resposta.json()}
+    Log    ${mensagem}
+    Lists Should Be Equal   ${resposta.json()['error']}    ${mensagem}
+
+
+deletar usuario   
     ${headers}=    Create Dictionary    Accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
     ${resposta}=    DELETE On Session    alias=Suits    url=/api/user/${USER_ID}       headers=${headers}    expected_status=200 
     Log    ${resposta.json()}
