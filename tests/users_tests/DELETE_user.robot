@@ -11,7 +11,6 @@ DELETE deletar usuario com sucesso
     deletar usuario    
 
 DELETE deletar usuario com id invalido
-    [Tags]    T
     logar adimin
     deletar usuario    
     deletar usuario com id invalido

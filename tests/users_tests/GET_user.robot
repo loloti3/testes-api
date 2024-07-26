@@ -9,11 +9,9 @@ Suite Setup     suite setup pre requisito usuario ter feito login no sistema
 *** Test Cases ***
 
 GET listar usuario
-    [Tags]    T 
     listar usuario
 
 GET count usuario
-    [Tags]    T
     ${COUNT_ANTES}=    contagem de usuarios
     criar um usuario com sucesso
     ${COUNT_DEPOIS}=    contagem de usuarios    
@@ -21,10 +19,8 @@ GET count usuario
     Should Be Equal    ${COUNT_ANTES}   ${COUNT_DEPOIS}  
 
 GET listar usuario por id
-    [Tags]    T
     listar usuario por id
 
 GET listar usuario com id invalido
-    [Tags]    T11
     deletar usuario
     listar usuario com id invalido

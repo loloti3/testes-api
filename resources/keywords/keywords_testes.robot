@@ -14,21 +14,20 @@ logar auth
     Log    ${TOKEN}
 
 listar usuario
-    ${headers}=    Create Dictionary    accept=application/json    Content-Type=application/json    Authorization=${TOKEN} 
+    ${headers}=    Create Dictionary    Authorization=${TOKEN} 
     ${resposta}=    GET On Session    alias=Suits    url=/api/user    headers=${headers}    expected_status=200
     Log    ${resposta.json()}
 
 contagem de usuarios
-   ${headers}=    Create Dictionary    Accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
+   ${headers}=    Create Dictionary    Authorization=${TOKEN}
    ${resposta}=    GET On Session    alias=Suits    url=/api/user/count    headers=${headers}    expected_status=200
    Log    ${resposta.json()}
    Set test Variable   ${count}    ${resposta.json()["count"]}
-   To Json    content
    Log    ${count}
    RETURN    ${count}
 
 listar usuario por id
-    ${headers}=    Create Dictionary    Accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
+    ${headers}=    Create Dictionary    Authorization=${TOKEN}
     ${resposta}=    GET On Session    alias=Suits    url=/api/user/${USER_ID}    headers=${headers}    expected_status=200
     Log    ${resposta.json()}
     Set Variable   ${user_id}    ${resposta.json()["_id"]}
@@ -37,7 +36,7 @@ listar usuario por id
     Should Be Equal    ${user_id}    ${USER_ID}
 
 listar usuario com id invalido
-    ${headers}=    Create Dictionary    Accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
+    ${headers}=    Create Dictionary    Authorization=${TOKEN}
     ${resposta}=    GET On Session    alias=Suits    url=/api/user/${USER_ID}    headers=${headers}    expected_status=404
     Log    ${resposta.json()}
     Set test Variable   ${mensagem}    ${resposta.json()["alert"][0]}
@@ -48,7 +47,7 @@ atualizar dados usuario por id
     ${nome}=    FakerLibrary.Name
     ${email}=    FakerLibrary.Email
 
-    ${headers}=    Create Dictionary    Accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
+    ${headers}=    Create Dictionary    Authorization=${TOKEN}
     ${body}=    Create Dictionary    
     ...  fullName=${nome}
     ...  mail=${email}
@@ -63,7 +62,7 @@ atualizar dados usuario por id
 
 atualizar dados usuario com campos em branco
     [Arguments]    ${email}    ${nome}    ${mensagem}
-    ${headers}=    Create Dictionary    Accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
+    ${headers}=    Create Dictionary    Authorization=${TOKEN}
     ${body}=    Create Dictionary    
     ...  fullName=${nome}
     ...  mail=${email}
@@ -74,13 +73,13 @@ atualizar dados usuario com campos em branco
 
 
 deletar usuario   
-    ${headers}=    Create Dictionary    Accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
+    ${headers}=    Create Dictionary    Authorization=${TOKEN}
     ${resposta}=    DELETE On Session    alias=Suits    url=/api/user/${USER_ID}       headers=${headers}    expected_status=200 
     Log    ${resposta.json()}
     Should Be Equal    ${resposta.json()["msg"]}    ${MENSAGEM_USUARIO_DELETADO_SUCESSO}    
 
 deletar usuario com id invalido
-    ${headers}=    Create Dictionary    Accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
+    ${headers}=    Create Dictionary    Authorization=${TOKEN}
     ${resposta}=    DELETE On Session    alias=Suits    url=/api/user/${USER_ID}       headers=${headers}    expected_status=400
     Log    ${resposta.json()}    
     Should Be Equal    ${resposta.json()["alert"][0]}     ${MENSAGEM_USUARIO_NAO_EXISTE}   

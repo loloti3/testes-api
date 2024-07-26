@@ -20,9 +20,10 @@ suite teardown deletar usuario
     deletar usuario
 
 logar adimin
+    ${headers}=    Create Dictionary     Accept=application/json    Content-Type=application/json
     ${body}=    Create Dictionary    mail=${EMAIL_ADMIN}    password=${PASSWORD_ADMIN}
     Log    ${body}
-    ${resposta}=    POST On Session    alias=Suits    url=/api/${login_auth}    json=${body}    expected_status=200
+    ${resposta}=    POST On Session    alias=Suits    url=/api/${login_auth}    json=${body}    expected_status=200    headers=${headers}
     Log    ${resposta.json()}  
     Set Global Variable    ${TOKEN}    ${resposta.json()['token']}            
     Log    ${TOKEN}
@@ -43,7 +44,7 @@ criar um usuario com sucesso
     Log    ${user_email}
     Log    ${user_password}
 
-    ${headers}=    Create Dictionary    accept=application/json    Content-Type=application/json    Authorization=${TOKEN}
+    ${headers}=    Create Dictionary   Authorization=${TOKEN}
     ${body}=    Create Dictionary
     ...    fullName=${FULL_NAME}
     ...    mail=${user_email}

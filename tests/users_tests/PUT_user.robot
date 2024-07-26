@@ -8,25 +8,21 @@ Suite Teardown    suite teardown deletar usuario
 
 *** Test Cases ***
 PUT atualizar nome e email do usuario por id
-    [Tags]    T
     atualizar dados usuario por id
 
-PUT atualziar nome e email com o campo email em branco
-    [Tags]    
+PUT atualziar nome e email com o campo email em branco    
     ${email}    Set Variable    
     ${nome}    gerar_nome_aleatorio
     ${mensagem}=    Create List    ${MENSAGEM_CAMPO_EMAIL_OBRIGATORIO}    
     atualizar dados usuario com campos em branco    ${email}    ${nome}    ${mensagem}    
 
 PUT atualziar nome e email com o campo nome em branco
-    [Tags]    T
     ${email}    gerar_email_aleatorio    
     ${nome}    Set Variable    
     ${mensagem}=    Create List    ${MENSAGEM_CAMPO_NOME_OBRIGATORIO}    
     atualizar dados usuario com campos em branco    ${email}    ${nome}    ${mensagem} 
 
 PUT atualziar nome e email com os dois campos em branco
-    [Tags]    T12
     ${email}    Set Variable    
     ${nome}    Set Variable    
     ${mensagem}=    Create List    ${MENSAGEM_CAMPO_NOME_OBRIGATORIO}    ${MENSAGEM_CAMPO_EMAIL_OBRIGATORIO}    
