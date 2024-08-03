@@ -85,4 +85,8 @@ deletar usuario com id invalido
     Should Be Equal    ${resposta.json()["alert"][0]}     ${MENSAGEM_USUARIO_NAO_EXISTE}   
 
 
-
+deletar usuario com campos incorretos
+    ${headers}=    Create Dictionary    Authorization=${TOKEN}
+    ${resposta}=    DELETE On Session    alias=Suits    url=/api/user/${USER_ID}       headers=${headers}    expected_status=400
+    Log    ${resposta.json()}    
+    Should Be Equal    ${resposta.json()["error"][0]}     ${MENSAGEM_USUARIO_NAO_EXISTE}   

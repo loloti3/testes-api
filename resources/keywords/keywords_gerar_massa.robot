@@ -10,6 +10,18 @@ gerar_nome_aleatorio
     ${nome_personalizado} =    Evaluate    "${nome_composto}".title()
     RETURN   ${nome_personalizado}
 
+gerar_nome_aleatorio_com_numeros
+    ${nome} =     Generate Random String    10    [LETTERS]\[NUMBERS]
+    RETURN   ${nome}
+
+gerar_nome_aleatorio_minusculo
+    ${nome} =     Generate Random String    10    [LOWER]
+    RETURN   ${nome}
+
+gerar_nome_aleatorio_caracters_especiais
+    ${nome} =     Generate Random String    10    [LOWER]\@#$%
+    RETURN   ${nome}
+
 gerar_email_aleatorio
     ${nome} =     Generate Random String    10    [LOWER]
     ${dominio} =    Set Variable    @example.com

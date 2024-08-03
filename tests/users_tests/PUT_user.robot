@@ -22,14 +22,32 @@ PUT atualziar nome e email com o campo nome em branco
     ${mensagem}=    Create List    ${MENSAGEM_CAMPO_NOME_OBRIGATORIO}    
     atualizar dados usuario com campos em branco    ${email}    ${nome}    ${mensagem} 
 
-PUT atualziar nome e email com os dois campos em branco
+PUT atualziar nome e email em branco
     ${email}    Set Variable    
     ${nome}    Set Variable    
     ${mensagem}=    Create List    ${MENSAGEM_CAMPO_NOME_OBRIGATORIO}    ${MENSAGEM_CAMPO_EMAIL_OBRIGATORIO}    
     atualizar dados usuario com campos em branco    ${email}    ${nome}    ${mensagem}
 
+PUT atualizar nome invalido com numeros
+    ${email}    gerar_email_aleatorio    
+    ${nome}    gerar_nome_aleatorio_com_numeros   
+    Log    ${nome}     
+    ${mensagem}=    Create List    ${MENSAGEM_CAMPO_NOME_COM_NUMEROS}        
+    atualizar dados usuario com campos em branco    ${email}    ${nome}    ${mensagem}
 
+PUT atualizar nome invalido minusculo
+    ${email}    gerar_email_aleatorio    
+    ${nome}    gerar_nome_aleatorio_minusculo 
+    Log    ${nome}     
+    ${mensagem}=    Create List    ${MENSAGEM_CAMPO_NOME_INVALIDO}       
+    atualizar dados usuario com campos em branco    ${email}    ${nome}    ${mensagem}
 
+PUT atualizar nome invalido com caracteres especiais
+    ${email}    gerar_email_aleatorio    
+    ${nome}    gerar_nome_aleatorio_caracters_especiais
+    Log    ${nome}     
+    ${mensagem}=    Create List    ${MENSAGEM_CAMPO_NOME_INVALIDO}       
+    atualizar dados usuario com campos em branco    ${email}    ${nome}    ${mensagem}
 
 
 
