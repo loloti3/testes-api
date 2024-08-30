@@ -1,4 +1,4 @@
 /logs
 
-tests/users_tests/PUT_user.robot
+PUT_user.robot
 
