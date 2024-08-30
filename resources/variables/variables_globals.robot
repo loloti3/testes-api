@@ -3,7 +3,6 @@
 Resource    ../main.robot
 
 *** Variables ***
-${EMPTY}    
 ${URL_SUITS}    https://suits.qacoders-academy.com.br
 ${EMAIL_ADMIN}    sysadmin@qacoders.com    
 ${PASSWORD_ADMIN}    1234@Test

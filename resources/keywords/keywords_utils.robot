@@ -5,16 +5,11 @@ Library    OperatingSystem
 
 *** Keywords ***
 
-suite setup criar sessao logar admin
+logar admin
     criar sessão
     logar adimin   
 
-suite setup criar sessao logar admin e criar usuario
-    criar sessão
-    logar adimin 
-    criar um usuario com sucesso 
-
-suite setup pre requisito usuario ter feito login no sistema
+suite setup usuario logado
     criar sessão
     logar adimin
     criar um usuario com sucesso
@@ -22,7 +17,7 @@ suite setup pre requisito usuario ter feito login no sistema
 
 suite teardown deletar usuario
     logar adimin
-    deletar usuario
+    deletar usuario com id valido
 
 logar adimin
     ${body}=    Create Dictionary    mail=${EMAIL_ADMIN}    password=${PASSWORD_ADMIN}

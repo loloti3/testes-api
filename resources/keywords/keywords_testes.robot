@@ -65,30 +65,19 @@ atualizar dados usuario com campos em branco
     Lists Should Be Equal   ${resposta.json()['error']}    ${mensagem}
 
 
-deletar usuario   
+deletar usuario com id valido  
     ${headers}=    Create Dictionary    Authorization=${TOKEN}
     ${resposta}=    DELETE On Session    alias=Suits    url=/api/user/${USER_ID}       headers=${headers}    expected_status=200 
     Log    ${resposta.json()}
     Should Be Equal    ${resposta.json()["msg"]}    ${MENSAGEM_USUARIO_DELETADO_SUCESSO}    
 
-deletar usuario com id invalido
+deletar usuario com id inexistente
     ${headers}=    Create Dictionary    Authorization=${TOKEN}
     ${resposta}=    DELETE On Session    alias=Suits    url=/api/user/${USER_ID}       headers=${headers}    expected_status=400
     Log    ${resposta.json()}    
     Should Be Equal    ${resposta.json()["alert"][0]}     ${MENSAGEM_USUARIO_NAO_EXISTE}   
 
 
-deletar usuario com campos incorretos
-    ${headers}=    Create Dictionary    Authorization=${TOKEN}
-    ${resposta}=    DELETE On Session    alias=Suits    url=/api/user/${USER_ID}       headers=${headers}    expected_status=400
-    Log    ${resposta.json()}    
-    Should Be Equal    ${resposta.json()["error"][0]}     ${MENSAGEM_USUARIO_NAO_EXISTE}   
 
-mudar status usuario
-    [Arguments]    ${status}    
-    ${headers}    Create Dictionary    Authorization=${TOKEN}
-    ${body}    Create Dictionary    status=${status}
-    ${resposta}    PUT On Session    alias=Suits    url=/api/user/status/${USER_ID}    json=${body}    headers=${headers}         
-    Dictionary Should Contain Item    ${resposta.json()}    msg    Status do usuario atualizado com sucesso para status ${status}.
 
 

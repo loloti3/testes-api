@@ -1,14 +1,12 @@
 *** Settings ***
 Resource    ../../resources/main.robot
-Test Setup   suite setup pre requisito usuario ter feito login no sistema
-Documentation    Casos de teste de deletar usuário
-
-#para deletar um usuario é nescessário esta logado como admin 
+Test Setup   suite setup usuario logado
 
 *** Test Cases ***
 DELETE deletar usuario com sucesso
+    [Documentation]    Deletar usuario com sucesso
     logar adimin
     listar usuario por id
-    deletar usuario    
+    deletar usuario com id valido
     listar usuario com id invalido
 

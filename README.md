@@ -1,7 +1,8 @@
 # Projeto de Testes Automatizados
 Olá, este é um projeto de automação de api utilizando robot framework com RequestsLibrary. 
 
-ainda estou na estapa de desenvolvimento então a estrutura do projeto está mudando sempre, por isso não irei adicionar muitos detalhes do projeto
+Swagger:https://suits.qacoders-academy.com.br/
+
 
 Estrutura em pastas
 
