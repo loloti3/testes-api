@@ -16,6 +16,7 @@ ${MENSAGEM_CAMPO_EMAIL_OBRIGATORIO}    O campo e-mail é obrigatório.
 ${MENSAGEM_CAMPO_NOME_OBRIGATORIO}    O campo nome completo é obrigatório.
 ${MENSAGEM_CAMPO_NOME_COM_NUMEROS}    O campo nome completo não deve conter números
 ${MENSAGEM_CAMPO_NOME_INVALIDO}    Informe o nome e sobrenome com as iniciais em letra maiúscula e sem caracteres especiais.
+
 #rotas 
 ${login_auth}    login
 

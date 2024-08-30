@@ -12,28 +12,18 @@ logar auth
     Log    ${resposta.json()}  
     Set Global Variable   ${TOKEN}    ${resposta.json()['token']}            
     Log    ${TOKEN}
+    #Get Match Count    list    pattern
 
-listar usuario
-    ${headers}=    Create Dictionary    Authorization=${TOKEN} 
-    ${resposta}=    GET On Session    alias=Suits    url=/api/user    headers=${headers}    expected_status=200
-    Log    ${resposta.json()}
-
-contagem de usuarios
-   ${headers}=    Create Dictionary    Authorization=${TOKEN}
-   ${resposta}=    GET On Session    alias=Suits    url=/api/user/count    headers=${headers}    expected_status=200
-   Log    ${resposta.json()}
-   Set test Variable   ${count}    ${resposta.json()["count"]}
-   Log    ${count}
-   RETURN    ${count}
 
 listar usuario por id
     ${headers}=    Create Dictionary    Authorization=${TOKEN}
     ${resposta}=    GET On Session    alias=Suits    url=/api/user/${USER_ID}    headers=${headers}    expected_status=200
     Log    ${resposta.json()}
     Set Variable   ${user_id}    ${resposta.json()["_id"]}
-    Log    ${user_id}
-    Log    ${USER_ID}
     Should Be Equal    ${user_id}    ${USER_ID}
+    Should Be Equal    ${resposta.json()["mail"]}    ${USER_EMAIL}
+    Should Be Equal    ${resposta.json()["fullName"]}    ${FULL_NAME} 
+
 
 listar usuario com id invalido
     ${headers}=    Create Dictionary    Authorization=${TOKEN}
@@ -47,10 +37,13 @@ atualizar dados usuario por id
     ${nome}=    FakerLibrary.Name
     ${email}=    FakerLibrary.Email
 
+    Set Global Variable    ${USER_EMAIL}    ${email}
     ${headers}=    Create Dictionary    Authorization=${TOKEN}
+
     ${body}=    Create Dictionary    
     ...  fullName=${nome}
     ...  mail=${email}
+
     ${resposta}=    PUT On Session    alias=Suits    url=/api/user/${USER_ID}    json=${body}    headers=${headers}    expected_status=200
     Log     ${resposta.json()}
     Set test Variable   ${nome_agora}    ${resposta.json()["updatedUser"]["fullName"]}
@@ -90,3 +83,12 @@ deletar usuario com campos incorretos
     ${resposta}=    DELETE On Session    alias=Suits    url=/api/user/${USER_ID}       headers=${headers}    expected_status=400
     Log    ${resposta.json()}    
     Should Be Equal    ${resposta.json()["error"][0]}     ${MENSAGEM_USUARIO_NAO_EXISTE}   
+
+mudar status usuario
+    [Arguments]    ${status}    
+    ${headers}    Create Dictionary    Authorization=${TOKEN}
+    ${body}    Create Dictionary    status=${status}
+    ${resposta}    PUT On Session    alias=Suits    url=/api/user/status/${USER_ID}    json=${body}    headers=${headers}         
+    Dictionary Should Contain Item    ${resposta.json()}    msg    Status do usuario atualizado com sucesso para status ${status}.
+
+

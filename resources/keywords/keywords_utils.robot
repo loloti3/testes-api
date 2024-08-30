@@ -9,6 +9,11 @@ suite setup criar sessao logar admin
     criar sessão
     logar adimin   
 
+suite setup criar sessao logar admin e criar usuario
+    criar sessão
+    logar adimin 
+    criar um usuario com sucesso 
+
 suite setup pre requisito usuario ter feito login no sistema
     criar sessão
     logar adimin
@@ -20,10 +25,9 @@ suite teardown deletar usuario
     deletar usuario
 
 logar adimin
-    ${headers}=    Create Dictionary     Accept=application/json    Content-Type=application/json
     ${body}=    Create Dictionary    mail=${EMAIL_ADMIN}    password=${PASSWORD_ADMIN}
     Log    ${body}
-    ${resposta}=    POST On Session    alias=Suits    url=/api/${login_auth}    json=${body}    expected_status=200    headers=${headers}
+    ${resposta}=    POST On Session    alias=Suits    url=/api/${login_auth}    json=${body}    expected_status=200  
     Log    ${resposta.json()}  
     Set Global Variable    ${TOKEN}    ${resposta.json()['token']}            
     Log    ${TOKEN}
