@@ -9,16 +9,25 @@ Estrutura em pastas
 
 ```plaintext
 ├── logs
-├── resources
-│   ├── keywords
-│   │   ├── keywords_gerais.robot          
-│   │   ├── keywords_tests.robot           
-│   │   └── keywords_utils.robot           
-│   ├── variables
-│       └── variables_globals.robot
-├── main.robot
+├── resources   
+|   |       
+│   ├── bodys
+│   |    └── user_body.resource
+|   |
+│   ├── fixtures
+│   │   ├── config.yaml          
+│   │   ├── mensagens.yaml           
+│   │   └── user.yaml
+|   |
+│   ├── utils
+│   │   ├── keywords_gerar_massa.resource       
+│   │   ├── keyworda_utils.resource         
+│   │   └── variables.resource
+|   |
+├   ├──  main.robot
+|
 ├── tests
-│   ├── users_tests
+│   ├── users
 │       ├── DELETE_user.robot              
 │       ├── GET_user.robot                 
 │       ├── POST_user.robot                

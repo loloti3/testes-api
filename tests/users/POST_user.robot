@@ -4,7 +4,7 @@ Test Setup    Criar Sessão
 Test Teardown    Deletar User Padrão
 
 *** Test Cases ***
-POST cadastra usuario
+POST usuario sucesso
     [Documentation]    Criar usuario com sucesso
     ${body}=    Body User  
     ${resposta}=    POST On Session    alias=Suits    url=${SERVIDOR['endpoint_user']}    headers=${g_HEADERS_AUTHORIZATION}    
