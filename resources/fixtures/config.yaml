@@ -1,0 +1,13 @@
+SERVIDOR :
+ url: https://suits.qacoders-academy.com.br
+ endpoint_auth: /api/login
+ endpoint_user: /api/user
+ endpoint_company: /api/company
+ endpoint_board: /api/board
+
+access_profile :
+ admin : ADMIN
+
+
+
+ 

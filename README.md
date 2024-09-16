@@ -1,7 +1,6 @@
 # Projeto de Testes Automatizados
 Olá, este é um projeto de automação de api utilizando robot framework com RequestsLibrary. 
 
-Swagger:https://suits.qacoders-academy.com.br/
 
 
 Estrutura em pastas
@@ -12,9 +11,9 @@ Estrutura em pastas
 ├── logs
 ├── resources
 │   ├── keywords
-│   │   ├── keywords_gerais.robot          # Geração de massa
-│   │   ├── keywords_tests.robot           # Utilizadas nos testes
-│   │   └── keywords_utils.robot           # Pré-requisitos
+│   │   ├── keywords_gerais.robot          
+│   │   ├── keywords_tests.robot           
+│   │   └── keywords_utils.robot           
 │   ├── variables
 │       └── variables_globals.robot
 ├── main.robot

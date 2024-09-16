@@ -1,0 +1,7 @@
+mensagens:
+  usuario_deletado_sucesso:   Usuário deletado com sucesso!. 
+  usuario_nao_existe:    Esse usuário não existe em nossa base de dados.  
+  email_obrigatorio:    O campo e-mail é obrigatório.
+  nome_obrigatorio:    O campo nome completo é obrigatório.
+  nome_com_numeros:    O campo nome completo não deve conter números
+  nome_invalido:    Informe o nome e sobrenome com as iniciais em letra maiúscula e sem caracteres especiais.

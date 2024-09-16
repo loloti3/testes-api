@@ -9,7 +9,11 @@ Library    FakerLibrary    locale=pt_BR
 
 #arquivos
 
-Resource    ./keywords/keywords_utils.robot
-Resource    ./keywords/keywords_testes.robot
-Resource    ./variables/variables_globals.robot
-Resource    ./keywords/keywords_gerar_massa.robot
+Resource    ./utils/keywords_utils.robot
+Resource    ./utils/variables.robot
+Resource    ./utils/keywords_gerar_massa.robot
+Resource    ./bodys/user_body.resource
+Variables   ./fixtures/config.yaml
+Variables   ./fixtures/mensagens.yaml
+Resource    ../tests/users/keywords_user.resource
+Variables    ./fixtures/user.yaml
