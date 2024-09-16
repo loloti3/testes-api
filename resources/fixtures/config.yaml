@@ -5,8 +5,7 @@ SERVIDOR :
  endpoint_company: /api/company
  endpoint_board: /api/board
 
-access_profile :
- admin : ADMIN
+
 
 
 
