@@ -14,7 +14,6 @@ POST usuario sucesso
 
     ${resposta}=    GET On Session    alias=Suits    url=${SERVIDOR['endpoint_user']}/${user_id}
     ...    headers=${g_HEADERS_AUTHORIZATION}    expected_status=200
-    Log    ${resposta.json()}
     Should Be Equal    ${resposta.json()['fullName']}    ${full_name}
     Should Be Equal    ${resposta.json()['mail']}    ${user_email}
 
