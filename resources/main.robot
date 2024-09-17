@@ -5,7 +5,6 @@ Documentation    contém todos os arquivos e bibliotecas nescessárias para real
 Library    Collections
 Library    RequestsLibrary
 Library    String
-Library    FakerLibrary    locale=pt_BR
 
 #arquivos
 

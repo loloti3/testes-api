@@ -2,8 +2,15 @@
 Olá, este é um projeto de automação de api utilizando robot framework com RequestsLibrary. 
 
 
-
-Estrutura em pastas
+## Depedencias
+    Python versão 3.12.1
+    Robot Framework
+    Bibliotecas utilizadas :
+        Collections
+        RequestsLibrary
+        String
+        akerLibrary   
+        yamllibrary
 
 ## Estrutura de Pastas
 

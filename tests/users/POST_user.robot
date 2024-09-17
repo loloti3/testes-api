@@ -19,7 +19,7 @@ POST usuario sucesso
 
     ${resposta}=    DELETE On Session    alias=Suits    url=${SERVIDOR['endpoint_user']}/${user_id}
     ...    headers=${g_HEADERS_AUTHORIZATION}    expected_status=200        
-
+    
     
    
     
