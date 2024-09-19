@@ -6,13 +6,13 @@ Library    Collections
 Library    RequestsLibrary
 Library    String
 
-#arquivos
-
 Resource    ./utils/keywords_utils.resource
 Resource    ./utils/variables.resource
 Resource    ./utils/keywords_gerar_massa.resource
 Resource    ./bodys/user_body.resource
+Resource    ../tests/users/keywords_user.resource
+
+
 Variables   ./fixtures/config.yaml
 Variables   ./fixtures/mensagens.yaml
-Resource    ../tests/users/keywords_user.resource
 Variables    ./fixtures/user.yaml
