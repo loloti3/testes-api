@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ../../resources/main.robot
-Test Setup     Criar Sessão
+Test Setup     Criar Sessão    WARN
 Test Teardown    Deletar User Padrão
 
 *** Test Cases ***

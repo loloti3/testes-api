@@ -6,9 +6,10 @@ Library    OperatingSystem
 *** Keywords ***
 
 Criar Sessão 
+    [Arguments]    ${log_level}
     ${headers}=    Create Dictionary     Accept=application/json    Content-Type=application/json    
     Create Session    alias=Suits    url=${SERVIDOR['url']}    headers=${headers}
-    Set Log Level    WARN    
+    Set Log Level    ${log_level}           
     ${body}=    Create Dictionary    mail=${ADMIN['mail']}    password=${ADMIN['senha']}    
     ${resposta}=    POST On Session    alias=Suits    url=${SERVIDOR['endpoint_auth']}    json=${body}    expected_status=200    
     Set Suite Variable    ${TOKEN}    ${resposta.json()['token']}            
